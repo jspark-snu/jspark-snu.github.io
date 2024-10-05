@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeongsoo Park - CV</title>
+    <style>
+        #password-box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+            text-align: center;
+            z-index: 1000;
+        }
+        .hidden {
+            display: none !important;
+        }
+        input[type="password"] {
+            padding: 10px;
+            width: 80%;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #error-message {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Password box -->
+    <div id="password-box">
+        <h2>Enter Password to Access</h2>
+        <input type="password" id="password" placeholder="Enter password" />
+        <button onclick="checkPassword()">Submit</button>
+        <p id="error-message" style="display: none;">Wrong password, try again!</p>
+    </div>
+
+    <!-- Loading placeholder -->
+    <div id="loading-placeholder">
+        <h1>Loading...</h1>
+    </div>
+
+    <!-- Main content container (empty initially) -->
+    <div id="main-content" class="hidden"></div>
+
+    <script>
+        // Content will be loaded here after password verification
+        const contentTemplate =`
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeongsoo Park - CV</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Main content -->
+    <div id="main-content" class="protected">
+    <header>
+        <h1>Jeongsoo Park</h1>
+        <p>Ph.D. in Engineering</p>
+        <p>Email: psprink@snu.ac.kr | Mobile: +1 (669) 293-7904</p>
+    </header>
+
+    <section id="personal-statement">
+        <h2>Personal Statement</h2>
+        <p>Goal-oriented engineering professional with 7+ years of experience as a start-up co-founder and researcher. My approach to engineering can be summed up by the phrase, “Whatever it takes to make it work,” which reflects my hands-on, solutions-driven attitude. During my start-up journey, I gained extensive experience in research, development, project management, team leadership, and business operations.</p>
+
+        <p>With a foundation in AI research, I’ve worked on a wide range of topics including TensorFlow model quantization, performance analysis, and fine-tuning models on specialized datasets. Driven by a strong focus on delivering value to clients, I’ve acquired diverse skills such as Android app development, edge device configuration, data collection, and even demo video production.</p>
+
+        <p>While I have extensive experience independently developing complete prototypes, I thrive in collaborative team environments. Throughout my career, I have learned the importance of effective communication and collaboration. To ensure successful project outcomes, I emphasize regular, concise meetings to keep everyone aligned and informed.</p>
+
+    </section>
+
+    <section id="work-experience">
+        <h2>Work Experience</h2>
+        <h3>Co-founder and Research Scientist, Cochl (Feb. 2017 — Present)</h3>
+        <ul>
+            <li>AI & Research
+                <ol>
+                    <li>Sound recognition model fine-tuning: </li>
+                        <ul>
+                            <li>Tackled fine-tuning of pre-trained models and successfully reduced false detection cases by 83%, while preserving 99.4% of true positive samples.</li>
+                        </ul>
+                    <li>TensorFlow model optimization: </li>
+                        <ul>
+                            <li>Performed restructuring and post-training INT8 quantization on TensorFlow models to maximize compatibility with ARM CPUs and Edge TPUs. </li>
+                            <li>Developed a framework for ensemble model creation and weight optimization based on environment-specific performance.</li>
+                        </ul>
+                    <li>TensorFlow model evaluation and quality assurance: </li>
+                        <ul>
+                            <li>Evaluated gunshot detection performance across diverse environments, microphones, and gun/bullet types — Investigated 28 candidate models and achieved a 22% higher recall rate with 62% fewer false detections compared to the previous version of the model.</li>
+                            <li>Investigated the effects of data perturbations, including noise robustness (white/ambient noise), padding, and clipping on audio inputs. </li>
+                            <li>Explored the impact of float16 resolution on model behavior. Led the development of an evaluation platform to ensure accurate model comparisons.</li>
+                        </ul>
+                    <li>Data analysis & visualization: </li>
+                        <ul>
+                            <li>Extracted and visualized feature vectors from a large-scale audio dataset over 1,460 hours long to provide quick insights. (<a href="https://arxiv.org/pdf/2309.03451">link</a>, <a href="https://youtu.be/xpoNdaBI5I0?si=ICDEDJol33Bw2aQ-">link2</a>)</li>
+                        </ul>
+                    <li>Audio-related techniques: </li>
+                        <ul>
+                            <li>Compared resampling algorithms in terms of trade-offs between speed and data loss. </li>
+                            <li>Developed an audio filtering algorithm to optimize inference frequency and save computational resources by filtering out ambient noise. </li>
+                            <li>Tested sound direction-of-arrival (DoA) estimation using the Pyroomacoustics library on multi-channel recordings for gunshot and drone tracking. </li>
+                            <li>Conducted sound source localization using spatially distributed microphone arrays. </li>
+                            <li>Mapped decibels (dB A) to microphone inputs and integrated it as an additional feature in the sound recognition product. </li>
+                            <li>Implemented a real-time voice harmonization algorithm (PSOLA) in Python. </li>
+                            <li>Developed an audio augmentation toolbox offering 7 different augmentation methods. </li>
+                            <li>Reduced CPU consumption by 99% in ambient noise by proposing an input data filtering algorithm.</li>
+                        </ul>
+                    <li>Music Information Retrieval (MIR): </li>
+                        <ul>
+                            <li>Analyzed a 100k music database for key and tempo estimation. </li>
+                            <li>Implemented and optimized music fingerprinting algorithms for the database. </li>
+                            <li>Evaluated and compared open-source music source separation libraries (Spleeter and Demucs).</li>
+                        </ul>
+                    <li>Open-source model testing: </li>
+                        <ul>
+                            <li>Evaluated open-source models for ASR (<a href="https://youtu.be/nsz9E9jKiB8?si=2Jq_3vAih43hTWyA">link</a>), music source separation, music fingerprinting, object detection, and speaker emotion detection.</li>
+                        </ul>
+                    <li>Patent Management: </li>
+                        <ul>
+                            <li>Proposed patent ideas and managed specifications and claims in collaboration with patent attorneys. </li>
+                            <li>Filed 42 international patents (Korea, US, Japan, Europe, China); 12 patents registered in Korea and Japan, with the remainder under review.</li>
+                        </ul>
+                </ol>
+            </li>
+
+            <li>Data Collection & Management
+                <ol>
+                    <li>Conducted regular online data crawling and semi-labeling to diversify audio database characteristics.</li>
+                    <li>Performed manual audio recordings across diverse environments, including car junkyards, demolition sites (for glass break noise), gun shooting ranges, dog kindergartens, and public bathrooms (for water tap sounds).</li>
+                    <li>Managed an outsourcing project to develop a web-based platform for audio label collection.</li>
+                    <li>Developed Android apps to streamline data collection: </li>
+                        <ul>
+                            <li>Kapture: An app that records the preceding 10 seconds of audio when triggered by a button press or whistle detection. Distributed to colleagues for efficient data gathering.</li>
+                            <li>Trollector: An app designed to selectively filter and save relevant audio data (false positives or true positives) instead of continuous ambient noise (<a href="https://youtu.be/L4Bq-grlsXo?si=EJaqeZzUICZBQ26t">link</a>, <a href="https://youtu.be/fPG5MnMIoB0?si=wX8wmy4ZaxrRuC13">link2</a>).</li>
+                        </ul>
+                </ol>
+            </li>
+
+            <li>Software & Development
+                <ol>
+                    <li>Developed a web page effectively demonstrating 10 technologies using HTML, CSS, JavaScript, and Python Flask, which later evolved into an official part of the homepage. (<a href="https://youtu.be/u9FN8wsB6e8?si=BcXLATGwUhhTaorZ">link</a>)</li>
+                    <li>Managed a C++-based audio signal preprocessing library to return same outputs as the TensorFlow preprocessor.</li>
+                    <li>Configured 120+ Linux-based off-the-shelf devices for plug-and-play operation and deployed them to showcase our technology in a Japanese nursing home.</li>
+                    <li>Developed Android apps as a functional prototype of product solutions with always-on feature, managing the entire process from prototyping to deployment.</li>
+                    <li>Constructed an SFTP server for receiving and storing security camera videos, complemented by a simple web interface for video playback.</li>
+                    <li>Integrated edge SDK, Siri, and IFTTT to create advanced automation and notification solutions.</li>
+                    <li>Implemented PyAudio-based RTSP stream transmission and reception system for real-time data delivery and server-side sound recognition.</li>
+                    <li>Dockerized a solution containing a music fingerprint extractor and search engine.</li>
+                    <li>Developed smart control systems for lightbulbs using human interaction-related sound events: Philips Hue (<a href="https://youtu.be/8ge55kC1B28?si=DQt5Bbfcw4UvAB_U">link</a>, <a href="https://github.com/jspark-snu/sense-phue">link2</a>) and Yeelight (<a href="https://github.com/jspark-snu/sense-yeelight">link</a>)</li>
+                </ol>
+            </li>
+
+            <li>Project & Team Management
+                <ol>
+                    <li>Led a research team of 7, managing goal setting, prioritization, and scheduling in collaboration with the business team.</li>
+                    <li>Managed development of software products for security cameras and supported 30+ clients’ needs, leading a team of 6.</li>
+                    <li>Oversaw nursing home project: product management, including prototype development, database schema definition, functional design of the system and dashboard, device configuration, and deployment of the system.</li>
+                    <li>Led the development of a sound recognition-based health-status summary report.</li>
+                    <li>Managed a B2C service for background music replacement, facilitating the transition from copyrighted music to royalty-free music.</li>
+                    <li>Led the development of a machine anomaly detection prototype for factory environments.</li>
+                    <li>Dog barking sound detection in a client’s data of 25,000 files each of which has 45 seconds in length.</li>
+                </ol>
+            </li>
+            <li>Business Development
+                <ol>
+                    <li>Represented the company at pitching events and booth exhibitions, engaging potential investors. (<a href="https://youtu.be/znl1WgWJqgE?si=jgcXLj9TgX_5GYh6">link</a>, <a href="https://youtu.be/0huOaY9Wn9A">link2</a>, <a href="https://youtu.be/M1Sb1jA9u64">link3</a>)</li>
+                    <li>Served as the main point of contact for consumer-oriented products, including security camera software and nursing home solutions.</li>
+                    <li>Interviewed 30+ applicants for positions including researcher, software engineer, business developer, project manager, and UX designer.</li>
+                    <!-- <li>Created and managed YouTube videos to intuitively demonstrate the company's technology.</li> -->
+                    <li>Tech showcase videos (participated in production)</li>
+                       <ol>
+                            <li><a href="https://youtu.be/AYVXMbDXdKk?si=CEOEQR7Uzfsoe14L">Get real time notifications and summaries with Siri on your phone!</a></li>
+                            <li><a href="https://youtu.be/1VNMUYLHUd0?si=uYm2HNmtirtJs-km">Cochl.Sense and NVIDIA Riva working on Microsoft HoloLens 2!</a></li>
+                            <li><a href="https://youtu.be/NyM3kqYz_gg?si=VFePUlSS-_bBD1vo">Sound AI with human-level listening ability</a></li>
+                            <li><a href="https://youtu.be/u9FN8wsB6e8?si=PY_XEpGqFNqhbW3K">Cochl's general sound AI demo</a></li>
+                            <li><a href="https://youtu.be/mnOJLAMrL5E?si=tTTsh8KlcWH_NvU2">Detecting Gunshot sound from 50m away with Cochl.Sense SDK - Cochl.Sense SDK demo</a></li>
+                            <li><a href="https://youtu.be/qtC0TSDIUxY?si=cjvBQKRMdtFBpIX0">Direction of Arrival (DoA) estimation with Cochl.Sense gunshot detection</a></li>
+                            <li><a href="https://youtu.be/2KFDVSu0tCw?si=_MmGYGZymI874sgZ">Cochl.Sense vs. Apple's iOS14 sound recognition!</a></li>
+                            <li><a href="https://youtu.be/8ge55kC1B28?si=DQt5Bbfcw4UvAB_U">Controlling Phillips Hue with sound - Cochl.Sense SDK demo</a></li>
+                            <li><a href="https://youtu.be/QUPA4OsWi8Y?si=f5FQeuvJP3bsA-U0">Gunshot detection test at outdoor shooting range with Axis M4308</a></li>
+                            <li><a href="https://youtu.be/oeU-M5G2Vyk?si=pNVeo1dV6_uXQUNi">Cochl.Sense plug-in for Nx VMS</a></li>
+                            <li><a href="https://youtu.be/go8kxME46m8">CochlxIronYun</a></li>
+                            <li><a href="https://youtu.be/9f9iAZPjuJs?si=8QqQ7OcBk_xfHYSB">Cochl.Sense Car burnout test</a></li>
+                            <li><a href="https://youtu.be/JsY_q0r2zJU?si=DQ_Jkz5h0TB1jp5H">Cochl.Sense demo - Car accident detection</a></li>
+                            <li><a href="https://youtu.be/1NBLSaEjYzg?si=gEbdmaEVVk-5sHEg">Cochl.Sense for driving</a></li>
+                            <li><a href="https://youtu.be/tyDjABxQBgg?si=sMuLfT8Do0hcaLmp">Cochl.Sense demo: Vandalism detection</a></li>
+                        </ol>
+                </ol>
+            </li>
+        </ul>
+
+        <h3>Research Intern, Samsung Medison (Jan. 2014 — Feb. 2014)</h3>
+        <p>Developed an automatic diagnosis system for liver cirrhosis using ultrasound imaging. Proposed a novel feature that significantly improved the model, achieving the highest accuracy in detection.</p>
+    </section>
+
+    <section id="education">
+        <h2>Education</h2>
+            <h3>Ph.D. in Engineering, Seoul National University (Sept. 2012 — Feb. 2018)</h3>
+                <ul>
+                    <li>Music and Audio Research Group (MARG), Grad. School of Convergence Science and Technology.</li>
+                    <li>Topic: Machine learning-based approaches for music source separation and pre-processing techniques of audio signals.</li>
+                    <li>Thesis: Unsupervised approach to music source separation using generalized Dirichlet prior (Advisor: Kyogu Lee)</li>
+                </ul>
+            <h3>M.S. in Electrical Engineering, Seoul National University (Sept. 2010 — Aug. 2012)</h3>
+                <ul>
+                    <li>Transceiver Technology Laboratory, Dept. of Electrical Engineering, College of Engineering.</li>
+                    <li>Topic: Studied physical layer of wireless communication systems including Long Term Evolution (LTE) Advanced system, multi-input multi-output (MIMO) techniques, and opportunistic channel information feedback.</li>
+                    <li>Thesis: Opportunistic channel state information feedback in multi-user MIMO environments (Advisor: Yong-Hwan Lee)</li>
+                </ul>
+            <h3>B.S. in Electrical Engineering, Seoul National University (Mar. 2006 — Aug. 2010)</h3>
+                <ul>
+                    <li>Dept. of Electrical Engineering, College of Engineering.</li>
+                    <li>Thesis: Face detection using Haar features (Advisor: Jong-ho Choi)</li>
+                </ul>
+        </ul>
+    </section>
+
+
+    <section id="publications">
+        <h2>Publications</h2>
+            <h3>Papers</h3>
+                <ul>
+                    <li><b>Park, Jeongsoo</b>, Dong-Gyun Han, Hyoung Sul La, Sangmin Lee, Yoonchang Han, and Eun-Jin Yang. <a href="https://arxiv.org/pdf/2309.03451">"Cross-domain Sound Recognition for Efficient Underwater Data Analysis.</a>" Asia Pacific Signal and Information Processing Association Annual Summit and Conference (APSIPA ASC). IEEE, 2023.</li> <!-- 1 -->
+
+                    <li>Jeong, Il-Young, and <b>Jeongsoo Park</b>. <a href="https://arxiv.org/pdf/2211.02289">"CochlScene: Acquisition of acoustic scene data using crowdsourcing.</a>" Asia-Pacific Signal and Information Processing Association Annual Summit and Conference (APSIPA ASC), 2022.</li> <!-- 2 -->
+
+                    <li>Yang, Jinsung,  <b>Jeongsoo Park</b>, Melanie Koehler, Joshua Simpson, Daniel Luque, Javier M. Rodríguez, and David Alsteens. <a href="https://onlinelibrary.wiley.com/doi/pdf/10.1002/anbr.202100077">"Rotavirus Binding to Cell Surface Receptors Directly Recruiting α2 Integrin.</a>" Advanced NanoBiomed Research 1.12 (2021): 2100077.</li> <!-- 3 -->
+
+                    <li>Chang, Sungkyun, Donmoon Lee, <b>Jeongsoo Park</b>, Hyungui Lim, Kyogu Lee, Karam Ko, and Yoonchang Han. <a href="https://arxiv.org/pdf/2010.11910">"Neural audio fingerprint for high-specific audio retrieval based on contrastive learning.</a>" IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), 2021.</li> <!-- 4 -->
+
+                    <li>Lee, Donmoon, Jaejun Lee, <b>Jeongsoo Park</b>, and Kyogu Lee.<a href="https://arxiv.org/pdf/1903.02794">"Enhancing music features by knowledge transfer from user-item log data.</a>" IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), 2019.</li> <!-- 5 -->
+
+                    <li><b>Park, Jeongsoo</b>, Jaeyoung Shin, and Kyogu Lee. <a href="https://arxiv.org/pdf/1801.04081">"Separation of instrument sounds using non-negative matrix factorization with spectral envelope constraints.</a>" arXiv preprint arXiv:1801.04081 (2018).</li> <!-- 6 -->
+
+                    <li>Lim, Hyungui, <b>Jeong-Soo Park</b>, and Yoonchang Han. <a href="https://dcase.community/documents/workshop2017/proceedings/DCASE2017Workshop_Lim_205.pdf">"Rare Sound Event Detection Using 1D Convolutional Recurrent Neural Networks.</a>" DCASE. 2017.</li> <!-- 7 -->
+
+                    <li>Han, Yoonchang, <b>Jeongsoo Park</b>, and Kyogu Lee. <a href="https://trepo.tuni.fi//bitstream/handle/10024/128483/DCASE_2017.pdf?sequence=1#page=46">"Convolutional Neural Networks with Binaural Representations and Background Subtraction for Acoustic Scene Classification.</a>" DCASE. 2017.</li> <!-- 8 -->
+
+                    <li><b>Park, Jeongsoo</b>, Jaeyoung Shin, and Kyogu Lee. <a href="https://ieeexplore.ieee.org/abstract/document/7876808">"Exploiting continuity/discontinuity of basis vectors in spectrogram decomposition for harmonic-percussive sound separation.</a>" IEEE/ACM Transactions on Audio, Speech, and Language Processing 25.5 (2017): 1061-1074.</li> <!-- 9 -->
+
+                    <li><b>Park, Jeongsoo</b>, and Kyogu Lee. <a href="https://archives.ismir.net/ismir2015/paper/000219.pdf">"Harmonic-Percussive Source Separation Using Harmonicity and Sparsity Constraints.</a>" ISMIR. 2015.</li> <!-- 10 -->
+
+                    <li>Oh, Changhoon, <b>Jeongsoo Park</b>, and Bongwon Suh. <a href="https://dl.acm.org/doi/abs/10.1145/2628363.2634226">"Gravity: automatic location tracking system between a car and a pedestrian.</a>" Proceedings of the 16th international conference on Human-computer interaction with mobile devices & services. 2014.</li> <!-- 11 -->
+
+                    <li><b>Park, Jeongsoo</b>, and Kyogu Lee. <a href="">"Separation of monophonic music signal based on user-guided onset information.</a>" International Congress on Sound and Vibration. 2014.</li> <!-- 12 -->
+
+                    <li><b>Park, Jeong-Soo</b>, Yong-Suk Byun, Moon-Hyung Yoon, and Yong-Hwan Lee. <a href="https://ieeexplore.ieee.org/abstract/document/6555050">"Opportunistic feedback of channel information in multi-user MIMO environments.</a>" Wireless Communications and Networking Conference (WCNC). IEEE, 2013.</li> <!-- 13 -->
+
+                    <li>Heo, Gil-Su, <b>Jeong-Soo Park</b>, Yong-Suk Byun, and Yong-Hwan Lee. <a href="https://ieeexplore.ieee.org/abstract/document/6263725">"Opportunistic user scheduling with normalized CQI in heterogeneous channel environments.</a>" IEEE International Symposium on a World of Wireless, Mobile and Multimedia Networks (WoWMoM), 2012.</li> <!-- 14 -->
+
+                    <li><b>Park, Jeong-Soo</b>, Gil-Su Heo, and Yong-Hwan Lee. <a href="https://ieeexplore.ieee.org/abstract/document/6064365">"Capacity maximizing cell-selection in heterogeneous cellular networks.</a>" SoftCOM 2011, 19th International Conference on Software, Telecommunications and Computer Networks. IEEE, 2011.</li> <!-- 15 -->
+                </ul>
+            <h3>Patents</h3>
+                <ul>
+                    <li><a href="https://patents.google.com/patent/WO2021182782A1">Audio data identification device</a></li> <!-- 1 -->
+                    <li><a href="https://patents.google.com/patent/WO2021187771A1">Augmented reality device for audio identification and control method thereof</a></li> <!-- 2 -->
+                    <li><a href="https://patents.google.com/patent/WO2021235846A1">Apparatus for detecting music data from video content and control method thereof</a></li> <!-- 3 -->
+                    <li><a href="https://patents.google.com/patent/WO2021246686A1">Active sound device utilizing audio recognition</a></li> <!-- 4 -->
+                    <li><a href="https://patents.google.com/patent/WO2021256889A1">Lifelog device utilizing audio recognition, and method therefor</a></li> <!-- 5 -->
+                    <li><a href="https://patents.google.com/patent/KR102388138B1">Method, apparatus and program for providing matching information through acoustic information analysis</a></li> <!-- 6 -->
+                    <li><a href="https://patents.google.com/patent/WO2022250285A1/en">Method, apparatus and program for providing the recognition accuracy of acoustic data</a></li> <!-- 7 -->
+                    <li><a href="https://patents.google.com/patent/KR102249980B1">Control apparatus for electronic device using non-vocal audio information and control method thereof</a></li> <!-- 8 -->
+                    <li><a href="https://patents.google.com/patent/WO2022260450A1/en">Audio quality shifting apparatus and control method thereof</a></li> <!-- 9 -->
+                    <li><a href="https://patents.google.com/patent/WO2020145770A1">Image treating apparatus and control method thereof</a></li> <!-- 10 -->
+                    <li><a href="https://patents.google.com/patent/KR20210060727A">Audio tagging system using densely connected convolutional networks</a></li> <!-- 11 -->
+                    <li><a href="https://patents.google.com/patent/KR20220129986A/en">Audio signal - based device control method</a></li> <!-- 12 -->
+                    <li><a href="https://patents.google.com/patent/KR101779563B1/en">Boosting method and apparatus for harmonic components of audio signals</a></li> <!-- 13 -->
+                    <li><a href="">Method of harmonic percussive source separation using harmonicity and sparsity constraints</li> <!-- 14 -->
+                    <li><a href="">Method and apparatus for processing audio signal</li> <!-- 15 -->
+                    <li><a href="https://patents.google.com/patent/KR102068330B1/en">Device to detect sleep apnea</a></li> <!-- 16 -->
+                    <li><a href="https://patents.google.com/patent/KR101997822B1/en">Methods for cooperative transmission in multi-cell cooperation systems</a></li> <!-- 17 -->
+                    <li><a href="https://patents.google.com/patent/WO2013191460A1/en">Method and apparatus for selecting cell in heterogeneous cell wireless communication system</a></li> <!-- 18 -->
+                    <li><a href="https://patents.google.com/patent/KR20130089338A/en">A method of cooperative transmission in multi-user multi-antenna wireless communication systems</a></li> <!-- 19 -->
+                </ul>
+    </section>
+
+
+    <section id="achievements">
+        <h2>Extra Curricular Achievements</h2>
+            <h3>Reviewer experience</h3>
+                <ul>
+                    <li>IEEE/ACM Transactions on Audio Speech and Language Processing (TASLP), PLOS ONE, AES Semantic Audio, Digital Audio Effects (DAFx), International Society for Music Information Retrieval (ISMIR), International Conference on Acoustics, Speech, and Signal Processing (ICASSP), IEEE International Workshop on Multimedia Signal Processing (MMSP).</li>
+                </ul>
+            <h3>Teaching experience</h3>
+                <ul>
+                    <li>Introduction to machine learning (Jul. 2017 — Sept. 2017): Big data engineer course for Seoul citizens (100+ students), hosted by Big Data Institute, Seoul National University.</li>
+                </ul>
+            <h3>Cross-disciplinary collaboration experience</h3>
+                <ul>
+                    <li>Automated the extraction of information from biological experiment data using Python tools. (<a href="https://onlinelibrary.wiley.com/doi/pdf/10.1002/anbr.202100077">link</a>)</li>
+                </ul>
+            <h3>International experience</h3>
+                <ul>
+                    <li>Represented the company at multiple networking events in San Jose, California (May 2022 — September 2022), pitching and promoting the business to build connections and gain market traction.</li>
+                    <li>Attended UC Berkeley’s summer session program (Jun. 2008 — Aug. 2008), earning an A+ in Calculus.</li>
+                </ul>
+            <h3>Additional experience</h3>
+                <ul>
+                    <li>Open to learn new tools: Created a video parody inspired by the 'Harry Potter by Balenciaga' meme using state-of-the-art AI services. (<a href="https://youtu.be/Wuxo3SDVfrY?si=fzpgmPOttR0nnVaX">link</a>)</li>
+                </ul>
+    </section>
+
+    <section id="language">
+        <h2>Language & Skills</h2>
+        <ul>
+             <li>Language: Korean (Native), English (Professional working proficiency), Japanese (Elementary Proficiency)</li>
+             <li>Programming language: Python, C++, HTML, Java, Kotlin, Javascript, Objective-C, Verilog HDL</li>
+             <li>Tools & Skills: AWS, Google cloud, Android Studio, iMovie, Plotly, MATLAB, Audacity, Puredata</li>
+        </ul>
+
+    </section>
+
+    <footer>
+        <p>Connect with me on <a href="https://www.linkedin.com/in/jeongsoo-park-a9b488119/">LinkedIn</a> or view my <a href="https://scholar.google.co.kr/citations?user=Vmmga4sAAAAJ&hl=en">Google Scholar</a>.</p>
+    </footer>
+    </div>
+</body>
+`;
+
+        async function checkPassword() {
+            const encoder = new TextEncoder();
+            const password = document.getElementById("password").value;
+            const encoded = encoder.encode(password);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', encoded);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+            
+            const correctHash = '291a004dc8efba06d9aa7a6bc9b0c3316c9f5fc2ab5b74a94e8d2cf8d3aae7c7';
+            
+            if (hashHex === correctHash) {
+                // Hide password box and loading placeholder
+                document.getElementById("password-box").classList.add('hidden');
+                document.getElementById("loading-placeholder").classList.add('hidden');
+                
+                // Show and populate main content
+                const mainContent = document.getElementById("main-content");
+                mainContent.classList.remove('hidden');
+                mainContent.innerHTML = contentTemplate;
+                
+                // Store authentication state in session storage
+                sessionStorage.setItem('authenticated', 'true');
+            } else {
+                document.getElementById("error-message").style.display = "block";
+            }
+        }
+
+        // Check authentication state on page load
+        window.onload = function() {
+            if (sessionStorage.getItem('authenticated') === 'true') {
+                document.getElementById("password-box").classList.add('hidden');
+                document.getElementById("loading-placeholder").classList.add('hidden');
+                const mainContent = document.getElementById("main-content");
+                mainContent.classList.remove('hidden');
+                mainContent.innerHTML = contentTemplate;
+            }
+        };
+    </script>
+</body>
+</html>
