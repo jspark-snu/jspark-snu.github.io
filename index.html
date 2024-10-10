@@ -96,26 +96,26 @@
         <ul>
             <h4>AI & Research</h4>
                 <ol>
-                    <li>Sound recognition model fine-tuning: </li>
+                    <li><b>Sound recognition model fine-tuning: </b></li>
                         <ul>
                             <li>Tackled fine-tuning of pre-trained models and successfully reduced false detection cases by 83%, while preserving 99.4% of true positive samples.</li>
                         </ul>
-                    <li>TensorFlow model optimization: </li>
+                    <li><b>TensorFlow model optimization: </b></li>
                         <ul>
                             <li>Performed restructuring and post-training INT8 quantization on TensorFlow models to maximize compatibility with ARM CPUs and Edge TPUs. </li>
                             <li>Developed a framework for ensemble model creation and weight optimization based on environment-specific performance.</li>
                         </ul>
-                    <li>TensorFlow model evaluation and quality assurance: </li>
+                    <li><b>TensorFlow model evaluation and quality assurance: </b></li>
                         <ul>
                             <li>Evaluated gunshot detection performance across diverse environments, microphones, and gun/bullet types — Investigated 28 candidate models and achieved a 22% higher recall rate with 62% fewer false detections compared to the previous version of the model (<a href="https://medium.com/cochl/cochl-does-performance-evaluation-tests-sincerely-c986254fbf05">link</a>).</li>
                             <li>Investigated the effects of data perturbations, including noise robustness (white/ambient noise), padding, and clipping on audio inputs. </li>
                             <li>Explored the impact of float16 resolution on model behavior. Led the development of an evaluation platform to ensure accurate model comparisons.</li>
                         </ul>
-                    <li>Data analysis & visualization: </li>
+                    <li><b>Data analysis & visualization: </b></li>
                         <ul>
                             <li>Extracted and visualized feature vectors from a large-scale audio dataset over 1,460 hours long to provide quick insights. (<a href="https://arxiv.org/pdf/2309.03451">link</a>, <a href="https://youtu.be/xpoNdaBI5I0?si=ICDEDJol33Bw2aQ-">link2</a>)</li>
                         </ul>
-                    <li>Audio-related techniques: </li>
+                    <li><b>Audio-related techniques: </b></li>
                         <ul>
                             <li>Compared resampling algorithms in terms of trade-offs between speed and data loss. </li>
                             <li>Developed an audio filtering algorithm to optimize inference frequency and save computational resources by filtering out ambient noise. </li>
@@ -126,22 +126,22 @@
                             <li>Developed an audio augmentation toolbox offering 7 different augmentation methods. </li>
                             <li>Reduced CPU consumption by 99% in ambient noise by proposing an input data filtering algorithm.</li>
                         </ul>
-                    <li>Music Information Retrieval (MIR): </li>
+                    <li><b>Music Information Retrieval (MIR): </b></li>
                         <ul>
                             <li>Analyzed a 100k music database for key and tempo estimation. </li>
                             <li>Implemented and optimized music fingerprinting algorithms for the database. </li>
                             <li>Evaluated and compared open-source music source separation libraries (Spleeter and Demucs).</li>
                         </ul>
-                    <li>Open-source model testing: </li>
+                    <li><b>Open-source model testing: </b></li>
                         <ul>
                             <li>Evaluated open-source models for ASR (<a href="https://youtu.be/nsz9E9jKiB8?si=2Jq_3vAih43hTWyA">link</a>), music source separation, music fingerprinting, object detection, and speaker emotion detection.</li>
                         </ul>
-                    <li>Patent Management: </li>
+                    <li><b>Patent Management: </b></li>
                         <ul>
                             <li>Proposed patent ideas and managed specifications and claims in collaboration with patent attorneys. </li>
                             <li>Filed 42 international patents (Korea, US, Japan, Europe, China); 12 patents registered in Korea and Japan, with the remainder under review.</li>
                         </ul>
-                    <li>Papers: </li>
+                    <li><b>Papers: </b></li>
                         <ul>
                             <li>Presented 7 papers at top-tier conferences including DCASE and ICASSP. </li>
                         </ul>
@@ -150,10 +150,10 @@
 
             <h4>Data Collection & Management</h4>
                 <ol>
-                    <li>Conducted regular online data crawling and semi-labeling to diversify audio database characteristics.</li>
-                    <li>Performed manual audio recordings across diverse environments, including car junkyards (<a href="https://medium.com/cochl/how-to-collect-the-real-sound-65f9111db993">link</a>), demolition sites (for glass break noise), gun shooting ranges, dog kindergartens, and public bathrooms (for water tap sounds).</li>
-                    <li>Managed an outsourcing project to develop a web-based platform for audio label collection.</li>
-                    <li>Developed Android apps to streamline data collection: </li>
+                    <li><b>System: </b> Conducted regular online data crawling and semi-labeling to diversify audio database characteristics.</li>
+                    <li><b>Ground-up work: </b> Performed manual audio recordings across diverse environments, including car junkyards (<a href="https://medium.com/cochl/how-to-collect-the-real-sound-65f9111db993">link</a>), demolition sites (for glass break noise), gun shooting ranges, dog kindergartens, and public bathrooms (for water tap sounds).</li>
+                    <li><b>Management: </b> Managed an outsourcing project to develop a web-based platform for audio label collection.</li>
+                    <li><b>Tools: </b> Developed Android apps to streamline data collection: </li>
                         <ul>
                             <li>Kapture: An app that records the preceding 10 seconds of audio when triggered by a button press or whistle detection. Distributed to colleagues for efficient data gathering.</li>
                             <li>Trollector: An app designed to selectively filter and save relevant audio data (false positives or true positives) instead of continuous ambient noise (<a href="https://youtu.be/L4Bq-grlsXo?si=EJaqeZzUICZBQ26t">link</a>, <a href="https://youtu.be/fPG5MnMIoB0?si=wX8wmy4ZaxrRuC13">link2</a>).</li>
@@ -163,38 +163,38 @@
 
             <h4>Software & Development</h4>
                 <ol>
-                    <li>Developed a web page effectively demonstrating 10 technologies using HTML, CSS, JavaScript, and Python Flask, which later evolved into an official part of the homepage. (<a href="https://youtu.be/u9FN8wsB6e8?si=BcXLATGwUhhTaorZ">link</a>, <a href="https://medium.com/cochl/yes-you-can-develop-it-a-k-a-making-sample-site-by-myself-533ae08d5313">link2</a>)</li>
-                    <li>Managed a C++-based audio signal preprocessing library to return same outputs as the TensorFlow preprocessor.</li>
-                    <li>Configured 120+ Linux-based off-the-shelf devices for plug-and-play operation and deployed them to showcase our technology in a Japanese nursing home.</li>
-                    <li>Developed Android apps as a functional prototype of product solutions with always-on feature, managing the entire process from prototyping to deployment.</li>
-                    <li>Constructed an SFTP server for receiving and storing security camera videos, complemented by a simple web interface for video playback.</li>
-                    <li>Integrated edge SDK, Siri, and IFTTT to create advanced automation and notification solutions.</li>
-                    <li>Implemented PyAudio-based RTSP stream transmission and reception system for real-time data delivery and server-side sound recognition.</li>
-                    <li>Dockerized a solution containing a music fingerprint extractor and search engine.</li>
-                    <li>Developed smart control systems for lightbulbs using human interaction-related sound events: Philips Hue (<a href="https://youtu.be/8ge55kC1B28?si=DQt5Bbfcw4UvAB_U">link</a>, <a href="https://github.com/jspark-snu/sense-phue">link2</a>) and Yeelight (<a href="https://github.com/jspark-snu/sense-yeelight">link</a>)</li>
+                    <li><b>Web: </b> Developed a web page effectively demonstrating 10 technologies using HTML, CSS, JavaScript, and Python Flask, which later evolved into an official part of the homepage. (<a href="https://youtu.be/u9FN8wsB6e8?si=BcXLATGwUhhTaorZ">link</a>, <a href="https://medium.com/cochl/yes-you-can-develop-it-a-k-a-making-sample-site-by-myself-533ae08d5313">link2</a>)</li>
+                    <li><b>Library: </b> Managed a C++-based audio signal preprocessing library to return same outputs as the TensorFlow preprocessor.</li>
+                    <li><b>Device: </b> Configured 120+ Linux-based off-the-shelf devices for plug-and-play operation and deployed them to showcase our technology in a Japanese nursing home.</li>
+                    <li><b>Apps: </b> Developed Android apps as a functional prototype of product solutions with always-on feature, managing the entire process from prototyping to deployment.</li>
+                    <li><b>Server: </b> Constructed an SFTP server for receiving and storing security camera videos, complemented by a simple web interface for video playback.</li>
+                    <li><b>Orchestration: </b> Integrated edge SDK, Siri, and IFTTT to create advanced automation and notification solutions.</li>
+                    <li><b>Stream: </b> Implemented PyAudio-based RTSP stream transmission and reception system for real-time data delivery and server-side sound recognition.</li>
+                    <li><b>Docker: </b> Dockerized a solution containing a music fingerprint extractor and search engine.</li>
+                    <li><b>Demonstration: </b> Developed smart control systems for lightbulbs using human interaction-related sound events: Philips Hue (<a href="https://youtu.be/8ge55kC1B28?si=DQt5Bbfcw4UvAB_U">link</a>, <a href="https://github.com/jspark-snu/sense-phue">link2</a>) and Yeelight (<a href="https://github.com/jspark-snu/sense-yeelight">link</a>)</li>
                 </ol>
             </li>
 
             <h4>Project & Team Management</h4>
                 <ol>
-                    <li>Led a research team of 7, managing goal setting, prioritization, and scheduling in collaboration with the business team.</li>
-                    <li>Managed development of software products for security cameras and supported 30+ clients’ needs, leading a team of 6.</li>
-                    <li>Oversaw nursing home project: product management, including prototype development, database schema definition, functional design of the system and dashboard, device configuration, and deployment of the system (<a href="https://medium.com/cochl/elderly-care-with-sound-ai-5eef4327da97">link</a>).</li>
-                    <li>Led the development of a sound recognition-based health-status summary report.</li>
-                    <li>Proposed and led the "Try Our Product at Home" project (<a href="https://medium.com/cochl/do-you-love-your-own-product-7af58632280a">link</a>).</li>
-                    <li>Managed a B2C service for background music replacement, facilitating the transition from copyrighted music to royalty-free music.</li>
-                    <li>Led the development of a machine anomaly detection prototype for factory environments.</li>
-                    <li>Dog barking sound detection in a client’s data of 25,000 files each of which has 45 seconds in length.</li>
+                    <li><b>Team leadership: </b> Led a research team of 7, managing goal setting, prioritization, and scheduling in collaboration with the business team.</li>
+                    <li><b>Security product: </b> Managed development of software products for security cameras and worked with military, airport, and government clients, leading a team of 6.</li>
+                    <li><b>Nursing home: </b> Oversaw nursing home project: product management, including prototype development, database schema definition, functional design of the system and dashboard, device configuration, and deployment of the system (<a href="https://medium.com/cochl/elderly-care-with-sound-ai-5eef4327da97">link</a>).</li>
+                    <li><b>Health monitoring: </b> Led the development of a sound recognition-based health-status summary report.</li>
+                    <li><b>Usability testing: </b> Proposed and led the "Try Our Product at Home" project (<a href="https://medium.com/cochl/do-you-love-your-own-product-7af58632280a">link</a>).</li>
+                    <li><b>Music rights: </b> Managed a B2C service for background music replacement, facilitating the transition from copyrighted music to royalty-free music.</li>
+                    <li><b>Anomaly detection: </b> Led the development of a machine anomaly detection prototype for factory environments.</li>
+                    <li><b>Massive data inspection: </b> Dog barking sound detection in a client’s data of 25,000 files each of which has 45 seconds in length.</li>
                 </ol>
             </li>
 
             <h4>Business Development</h4>
                 <ol>
-                    <li>Represented the company at pitching events and booth exhibitions, engaging potential investors. (<a href="https://youtu.be/znl1WgWJqgE?si=jgcXLj9TgX_5GYh6">link</a>, <a href="https://youtu.be/0huOaY9Wn9A">link2</a>, <a href="https://youtu.be/M1Sb1jA9u64">link3</a>)</li>
-                    <li>Served as the main point of contact for consumer-oriented products, including security camera software and nursing home solutions.</li>
-                    <li>Interviewed 30+ applicants for positions including researcher, software engineer, business developer, project manager, and UX designer.</li>
+                    <li><b>Representation: </b> Represented the company at pitching events and booth exhibitions, engaging potential investors. (<a href="https://youtu.be/znl1WgWJqgE?si=jgcXLj9TgX_5GYh6">link</a>, <a href="https://youtu.be/0huOaY9Wn9A">link2</a>, <a href="https://youtu.be/M1Sb1jA9u64">link3</a>)</li>
+                    <li><b>Point of contact: </b> Served as the main point of contact for consumer-oriented products, including security camera software and nursing home solutions.</li>
+                    <li><b>Recruitment: </b> Interviewed 30+ applicants for positions including researcher, software engineer, business developer, project manager, and UX designer.</li>
                     <!-- <li>Created and managed YouTube videos to intuitively demonstrate the company's technology.</li> -->
-                    <li>Tech showcase videos (participated in production)</li>
+                    <li><b>Content creation: </b> Created and managed YouTube content to demonstrate company technology effectively.</li>
                         <ul>
                             <li><a href="https://youtu.be/AYVXMbDXdKk?si=CEOEQR7Uzfsoe14L">Get real time notifications and summaries with Siri on your phone!</a></li>
                             <li><a href="https://youtu.be/1VNMUYLHUd0?si=uYm2HNmtirtJs-km">Cochl.Sense and NVIDIA Riva working on Microsoft HoloLens 2!</a></li>
