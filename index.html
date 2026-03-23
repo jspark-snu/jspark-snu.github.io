@@ -357,7 +357,7 @@
             const hashArray = Array.from(new Uint8Array(hashBuffer));
             const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
             
-            const correctHash = '291a004dc8efba06d9aa7a6bc9b0c3316c9f5fc2ab5b74a94e8d2cf8d3aae7c7';
+            const correctHash = 'df657feb3ac94186292b811acdc2c33352cfca8404acb6df2d8a118fa9486bb9';
             
             if (hashHex === correctHash) {
                 // Hide password box and loading placeholder
